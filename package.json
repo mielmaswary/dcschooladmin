@@ -1,6 +1,6 @@
 {
   "name": "adminclient",
-  "proxy": "https://dcschooljsonserver.onrender.com/",
+  "proxy": "https://dcschooljsonserver.onrender.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -13,9 +13,7 @@ import CompanyEdit from "./components/CompanyEdit";
 
 function App() {
   return (
-    <Admin
-      dataProvider={restProvider("https://dcschooljsonserver.onrender.com")}
-    >
+    <Admin dataProvider={restProvider("https://dcschooladmin.onrender.com")}>
       <Resource
         name="questions"
         list={QuestionsList}
