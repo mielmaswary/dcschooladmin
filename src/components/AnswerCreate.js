@@ -1,15 +1,14 @@
 import React from "react";
-import { Create, SimpleForm, TextInput } from "react-admin";
-import { BooleanField } from "react-admin";
+import { BooleanInput, Create, SimpleForm, TextInput } from "react-admin";
 
 const AnswerCreate = (props) => {
   return (
     <Create title={"צור תשובה חדשה"} {...props}>
       <SimpleForm>
-        <TextInput source="is_correct" />
-
-        <TextInput source="text" />
-        <TextInput source="question_id" />
+        <TextInput disabled source="id" />
+        <BooleanInput source="is_correct" label="האם התשובה נכונה?" />
+        <TextInput source="text" label="טקסט של התשובה" />
+        <TextInput source="question_id" label="לאיזו שאלה לקשר" />
       </SimpleForm>
     </Create>
   );

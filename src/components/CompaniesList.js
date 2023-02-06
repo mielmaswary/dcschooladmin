@@ -19,13 +19,10 @@ const CompaniesList = () => {
         <TextField source="id" />
         <TextField source="name" />
         <TextField source="max_drivers" />
-
-        {/* <SingleFieldList source="questions">
-          <ChipField source="questions" />
-        </SingleFieldList> */}
-
-        <EditButton basePath="/companies" />
-        <DeleteButton basePath="/companies" />
+        <TextField source="questions" />
+        <TextField source="link" />
+        <EditButton basepath="/companies" />
+        <DeleteButton basepath="/companies" />
       </Datagrid>
     </List>
   );

@@ -18,8 +18,8 @@ const QuestionsList = () => {
         <TextField source="text" label="טקסט השאלה" />
         <TextField source="position" label="מיקום" />
         <TextField source="answer_summery" label="תקציר התשובה" />
-        <EditButton basePath="/questions" />
-        <DeleteButton basePath="/questions" />
+        <EditButton basepath="/questions" />
+        <DeleteButton basepath="/questions" />
       </Datagrid>
     </List>
   );

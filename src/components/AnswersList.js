@@ -17,8 +17,8 @@ const AnswersList = () => {
         <BooleanField source="is_correct" />
         <TextField source="text" />
         <TextField source="question_id" />
-        <EditButton basePath="/answers" />
-        <DeleteButton basePath="/answers" />
+        <EditButton basepath="/answers" />
+        <DeleteButton basepath="/answers" />
       </Datagrid>
     </List>
   );
