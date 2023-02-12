@@ -10,6 +10,7 @@ import {
   ArrayField,
   SingleFieldList,
   ChipField,
+  UrlField,
 } from "react-admin";
 
 const CompaniesList = () => {
@@ -19,8 +20,9 @@ const CompaniesList = () => {
         <TextField source="id" />
         <TextField source="name" />
         <TextField source="max_drivers" />
+        <TextField source="driversCount" />
         <TextField source="questions" />
-        <TextField source="link" />
+        <UrlField source="link" />
         <EditButton basepath="/companies" />
         <DeleteButton basepath="/companies" />
       </Datagrid>

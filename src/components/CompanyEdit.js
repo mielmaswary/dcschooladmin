@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Edit, SimpleForm, TextInput } from "react-admin";
+import { Edit, NumberField, SimpleForm, TextInput } from "react-admin";
 import { SelectArrayInput } from "react-admin";
 
 const CompanyEdit = (props) => {
@@ -7,6 +7,7 @@ const CompanyEdit = (props) => {
   const choices = questions.map((question) => {
     return { id: question.id, name: question.title };
   });
+  console.log("🚀 ~ file: CompanyEdit.js:10 ~ choices ~ choices", choices);
 
   return (
     <Edit title={"ערוך פרטי חברה"} {...props}>
@@ -14,6 +15,7 @@ const CompanyEdit = (props) => {
         <TextInput source="id" disabled />
         <TextInput source="name" />
         <TextInput source="max_drivers" />
+        <NumberField source="driversCount" />
         <SelectArrayInput
           source="questions"
           label="בחר שאלות"
