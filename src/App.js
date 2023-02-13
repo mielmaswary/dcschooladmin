@@ -20,14 +20,18 @@ import {
   FirebaseDataProvider,
   FirebaseRealTimeSaga,
 } from "react-admin-firebase";
+
+const dev = true;
+const rootFetchUrl = dev
+  ? "http://localhost:8000"
+  : "https://dcschooljsonserverexpress.onrender.com";
 function App() {
   const [questions, setQuestions] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   //get question from database
   useEffect(() => {
-    let fetchUrl = `https://dcschooljsonserverexpress.onrender.com/api/questions`;
-    //let fetchUrl = `http://localhost:8000/api/questions`;
+    let fetchUrl = `${rootFetchUrl}/api/questions`;
     fetch(fetchUrl, {
       headers: {
         Authorization:
@@ -70,7 +74,10 @@ function App() {
   };
 
   // const dataProvider = restProvider("http://localhost:3000/api", fetchJson);
-  const dataProvider = restProvider("/api", fetchJson);
+  const dataProvider = restProvider(
+    dev ? "http://localhost:3000/api" : "/api",
+    fetchJson
+  );
   return (
     <Admin dataProvider={dataProvider} authProvider={authProvider}>
       <Resource

@@ -1,5 +1,5 @@
 import React from "react";
-import { Edit, SimpleForm, TextInput } from "react-admin";
+import { Edit, NumberField, NumberInput, SimpleForm, TextInput } from "react-admin";
 const DriverEdit = () => {
   return (
     <Edit title={"ערוך פרטי נהג"}>
@@ -7,6 +7,7 @@ const DriverEdit = () => {
         <TextInput source="id" disabled />
         <TextInput source="name" label="שם מלא" />
         <TextInput source="companyId" label="מספר מזהה של החברה" />
+        <NumberInput disabled source="level" defaultValue={0} />
       </SimpleForm>
     </Edit>
   );

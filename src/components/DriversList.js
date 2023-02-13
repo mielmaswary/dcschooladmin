@@ -5,6 +5,7 @@ import {
   TextField,
   EditButton,
   DeleteButton,
+  NumberField,
 } from "react-admin";
 
 const DriversList = () => {
@@ -14,6 +15,7 @@ const DriversList = () => {
         <TextField source="id" label="מספר תעודת זהות" />
         <TextField source="name" label="שם מלא" />
         <TextField disabled source="companyId" label="מספר מזהה של החברה" />
+        <NumberField source="level" label="שלב"/>
         <EditButton basepath="/questions" />
         <DeleteButton basepath="/questions" />
       </Datagrid>
