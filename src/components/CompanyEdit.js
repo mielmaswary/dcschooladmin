@@ -7,14 +7,15 @@ const CompanyEdit = (props) => {
   const choices = questions.map((question) => {
     return { id: question.id, name: question.title };
   });
-  console.log("🚀 ~ file: CompanyEdit.js:10 ~ choices ~ choices", choices);
+
 
   return (
     <Edit title={"ערוך פרטי חברה"} {...props}>
       <SimpleForm>
         <TextInput source="id" disabled />
         <TextInput source="name" />
-        <TextInput source="max_drivers" />
+        <TextInput source="maxDrivers" />
+        <TextInput source="currentDrivers" />
         <NumberField source="driversCount" />
         <SelectArrayInput
           source="questions"

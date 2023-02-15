@@ -6,24 +6,26 @@ import { SelectArrayInput } from "react-admin";
 import { nanoid } from "nanoid";
 const CompanyCreate = (props) => {
   const dev = false;
-  const roothUrl = dev
+  const rootUrl = dev
     ? "http://localhost:3000"
     : "https://dcschooluidev.onrender.com";
   const questions = props.questions;
+
   const choices =
     questions &&
     questions.map((question) => {
       return { id: question.id, name: question.title };
     });
 
-  const company_link = `${roothUrl}/home/?companyId=${nanoid()}${nanoid()}`;
+  const company_link = `${rootUrl}/home/?companyId=${nanoid()}${nanoid()}`;
   const company_id = company_link.split("companyId=")[1];
   return (
     <Create title={"צור חברה חדשה"} {...props}>
       <SimpleForm>
         <TextInput source="id" disabled defaultValue={company_id} />
         <TextInput source="name" />
-        <TextInput source="max_drivers" />
+        <TextInput source="maxDrivers" />
+        <TextInput disabled source="currentDrivers" />
 
         <Count source="drivers" filter={{ is_published: true }} />
         <SelectArrayInput

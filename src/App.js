@@ -27,6 +27,7 @@ const rootFetchUrl = dev
   : "https://dcschooljsonserverexpress.onrender.com";
 function App() {
   const [questions, setQuestions] = useState([]);
+  console.log("🚀 ~ file: App.js:30 ~ App ~ questions", questions);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   //get question from database
@@ -34,8 +35,7 @@ function App() {
     let fetchUrl = `${rootFetchUrl}/api/questions`;
     fetch(fetchUrl, {
       headers: {
-        Authorization:
-          "eyJhbGciOiJSUzI1NiIsImtpZCI6ImFlYjMxMjdiMjRjZTg2MDJjODEyNDUxZThmZTczZDU4MjkyMDg4N2MiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoi157WtNeZ15DWtdecIC0gTWllbCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BRWRGVHA0aFBIanZ1bVhROWwyYzZTbWVNOTJHT3p2c0JZcHhWWjNNSW1UaVhiND1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9kY3NjaG9vbGFkbWluYXV0aCIsImF1ZCI6ImRjc2Nob29sYWRtaW5hdXRoIiwiYXV0aF90aW1lIjoxNjc2MTQ2ODkwLCJ1c2VyX2lkIjoiTHRTbm5zbXdFSmF6dE5vWHp0R2hTUnZvaTRtMiIsInN1YiI6Ikx0U25uc213RUphenROb1h6dEdoU1J2b2k0bTIiLCJpYXQiOjE2NzYxNDY4OTAsImV4cCI6MTY3NjE1MDQ5MCwiZW1haWwiOiJtaWVsMTk4M0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExNzg2MTExNjQwMDMxODE3MjUxMiJdLCJlbWFpbCI6WyJtaWVsMTk4M0BnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.XENQDNi4WHMijH109uFZcdBuU2w2C1RYsT4fFMFId-UjlzGGw-Eyyqyvk3psSfzdY10vMPDfbV_IxdtwkynTL_GBW_QzwL4RBGaOMPFw2oDQvuNqQGan_wc17E_ajxb2UfZ7Nh0b7Tkf6oY46aYDAfu5W5cKlyWovnUaFrydgNm-GF6AqnQOPPSfdZqlcRURlrHnXW2SrYlteK_psbZAoTjNErgJXL86zFGtUZ_I3ohc-3Tot4ia-fmcOj1i7GyfsSDtQOFMY4sVlFbAKXVw3z3tqGbM1MF92z16S5amdE5JiMBIxUJaGA9k_rK6ZgzRj9gbIxvuJIvvkMEffrDZlw",
+        Authorization: "",
       },
     })
       .then((res) => res.json())
@@ -73,7 +73,6 @@ function App() {
     return fetchUtils.fetchJson(url, options);
   };
 
-  // const dataProvider = restProvider("http://localhost:3000/api", fetchJson);
   const dataProvider = restProvider(
     dev ? "http://localhost:3000/api" : "/api",
     fetchJson
