@@ -21,7 +21,7 @@ import {
   FirebaseRealTimeSaga,
 } from "react-admin-firebase";
 
-const dev = false;
+const dev = true;
 const rootFetchUrl = dev
   ? "http://localhost:8000"
   : "https://dcschooljsonserverexpress.onrender.com";
