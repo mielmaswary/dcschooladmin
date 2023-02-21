@@ -25,9 +25,7 @@ const CompanyCreate = (props) => {
         <TextInput source="id" disabled defaultValue={company_id} />
         <TextInput source="name" />
         <TextInput source="maxDrivers" />
-        <TextInput disabled source="currentDrivers" />
-
-        <Count source="drivers" filter={{ is_published: true }} />
+        <TextInput disabled source="currentDrivers" defaultValue={0} />
         <SelectArrayInput
           source="questions"
           label="בחר שאלות"

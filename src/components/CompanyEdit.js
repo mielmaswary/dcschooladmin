@@ -8,14 +8,13 @@ const CompanyEdit = (props) => {
     return { id: question.id, name: question.title };
   });
 
-
   return (
     <Edit title={"ערוך פרטי חברה"} {...props}>
       <SimpleForm>
         <TextInput source="id" disabled />
-        <TextInput source="name" />
+        <TextInput source="name" disabled />
         <TextInput source="maxDrivers" />
-        <TextInput source="currentDrivers" />
+        <TextInput source="currentDrivers" disabled />
         <NumberField source="driversCount" />
         <SelectArrayInput
           source="questions"
