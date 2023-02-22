@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 import {
   List,
@@ -14,10 +15,34 @@ import {
   Count,
   ReferenceManyCount,
   ReferenceManyField,
+  ExportButton,
+  Show,
+  FilterButtonMenuItem,
+  ShowButton,
+  useRecordContext,
 } from "react-admin";
-import { FunctionField } from "react-admin";
+// import useGetCopmanyId from "./hooks/useGetCopmanyId";
 
-const CompaniesList = () => {
+const CompaniesList = (props) => {
+  const ReportField = ({ source }) => {
+    const record = useRecordContext();
+    const handleClick = (e) => {
+      const companyId = e.target.value.split(",")[0];
+      const companyName = e.target.value.split(",")[1];
+      const date = new Date().toJSON().slice(0, 10);
+      props.downLoadCompanyReport(companyId, companyName, date);
+    };
+    return (
+      <Button
+        variant="contained"
+        value={`${record && record[source]},${record["name"]}`}
+        onClick={handleClick}
+      >
+        דוח
+      </Button>
+    );
+  };
+
   return (
     <List>
       <Datagrid>
@@ -29,6 +54,7 @@ const CompaniesList = () => {
         <UrlField source="link" label="קישור" />
         <EditButton basepath="/companies" />
         <DeleteButton basepath="/companies" />
+        <ReportField source="id" />
       </Datagrid>
     </List>
   );

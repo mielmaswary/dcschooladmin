@@ -14,6 +14,7 @@ import CompanyEdit from "./components/CompanyEdit";
 import DriversList from "./components/DriversList";
 import DriverCreate from "./components/DriverCreate";
 import DriverEdit from "./components/DriverEdit";
+import * as XLSX from "xlsx";
 
 import {
   FirebaseAuthProvider,
@@ -43,6 +44,28 @@ function App() {
         setQuestions(data);
       });
   }, []);
+
+  //company report
+  const downloadExcel = (data, companyName, date) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+    XLSX.writeFile(workbook, `${companyName}${date}.xlsx`);
+  };
+  const downLoadCompanyReport = (companyId, companyName, date) => {
+    let fetchUrl = `${rootFetchUrl}/api/drivers?companyId=${companyId}`;
+    fetch(fetchUrl, {
+      headers: {
+        Authorization: "",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        downloadExcel(data, companyName, date);
+      });
+  };
 
   const firebaseConfig = {
     apiKey: "AIzaSyBtWNCGeJPgZGB-XpPjHyzav2_Nj1b4OSA",
@@ -93,7 +116,7 @@ function App() {
       />
       <Resource
         name="companies"
-        list={CompaniesList}
+        list={<CompaniesList downLoadCompanyReport={downLoadCompanyReport} />}
         create={<CompanyCreate questions={questions} />}
         edit={<CompanyEdit questions={questions} />}
       />
