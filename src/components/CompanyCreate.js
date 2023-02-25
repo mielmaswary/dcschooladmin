@@ -5,7 +5,7 @@ import { Count } from "react-admin";
 import { SelectArrayInput } from "react-admin";
 import { nanoid } from "nanoid";
 const CompanyCreate = (props) => {
-  const dev = true;
+  const dev = false;
   const rootUrl = dev
     ? "http://localhost:3000"
     : "https://dcschooluidev.onrender.com";
@@ -25,7 +25,7 @@ const CompanyCreate = (props) => {
         <TextInput source="id" disabled defaultValue={company_id} />
         <TextInput source="name" />
         <TextInput source="maxDrivers" />
-        <TextInput disabled source="currentDrivers" defaultValue={1} />
+        <TextInput disabled source="currentDrivers" defaultValue={0} />
         <SelectArrayInput
           source="questions"
           label="בחר שאלות"
