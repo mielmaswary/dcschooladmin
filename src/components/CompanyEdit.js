@@ -15,7 +15,6 @@ const CompanyEdit = (props) => {
         <TextInput source="name" disabled />
         <TextInput source="maxDrivers" />
         <TextInput source="currentDrivers" disabled />
-        <NumberField source="driversCount" />
         <SelectArrayInput
           source="questions"
           label="בחר שאלות"

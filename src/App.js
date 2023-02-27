@@ -28,12 +28,26 @@ const rootFetchUrl = dev
   : "https://dcschooljsonserverexpress.onrender.com";
 function App() {
   const [questions, setQuestions] = useState([]);
-  console.log("🚀 ~ file: App.js:30 ~ App ~ questions", questions);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   //get question from database
   useEffect(() => {
     let fetchUrl = `${rootFetchUrl}/api/questions`;
+    fetch(fetchUrl, {
+      headers: {
+        Authorization: "",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(data);
+      });
+  }, []);
+
+
+  //get company drivers count
+  useEffect(() => {
+    let fetchUrl = `${rootFetchUrl}/api/company/`;
     fetch(fetchUrl, {
       headers: {
         Authorization: "",
