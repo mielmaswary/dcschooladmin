@@ -44,7 +44,6 @@ function App() {
       });
   }, []);
 
-
   //get company drivers count
   useEffect(() => {
     let fetchUrl = `${rootFetchUrl}/api/company/`;

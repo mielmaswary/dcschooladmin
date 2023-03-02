@@ -52,8 +52,8 @@ const CompaniesList = (props) => {
         <TextField source="currentDrivers" label="מספר נהגים רשומים" />
         <TextField source="questions" label="שאלות שנבחרו" />
         <UrlField source="link" label="קישור" />
-        <EditButton basepath="/companies" />
-        <DeleteButton basepath="/companies" />
+        <EditButton basepath="/companies" label="ערוך" />
+        <DeleteButton basepath="/companies" label="מחק" />
         <ReportField source="id" />
       </Datagrid>
     </List>
