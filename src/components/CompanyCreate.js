@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Create, NumberField, SimpleForm, TextInput } from "react-admin";
+import {
+  Create,
+  NumberField,
+  NumberInput,
+  SimpleForm,
+  TextInput,
+} from "react-admin";
 import { Count } from "react-admin";
 
 import { SelectArrayInput } from "react-admin";
@@ -25,7 +31,7 @@ const CompanyCreate = (props) => {
         <TextInput source="id" disabled defaultValue={company_id} />
         <TextInput source="name" />
         <TextInput source="maxDrivers" />
-        <TextInput disabled source="currentDrivers" defaultValue={0} />
+        <NumberInput disabled source="currentDrivers" defaultValue={0} />
         <SelectArrayInput
           source="questions"
           label="בחר שאלות"

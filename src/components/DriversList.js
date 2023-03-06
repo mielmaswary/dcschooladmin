@@ -7,6 +7,8 @@ import {
   DeleteButton,
   NumberField,
   DateField,
+  FunctionField,
+  ReferenceField,
 } from "react-admin";
 
 const DriversList = () => {
@@ -15,10 +17,23 @@ const DriversList = () => {
       <Datagrid>
         <TextField source="id" label="מספר תעודת זהות" />
         <TextField source="name" label="שם מלא" />
-        <TextField disabled source="companyId" label="מספר מזהה של החברה" />
+
+        <ReferenceField
+          label="שם החברה"
+          source="companyId"
+          reference="companies"
+        >
+          <FunctionField render={(record) => record && `${record.name} `} />
+        </ReferenceField>
         <NumberField source="level" label="שלב" />
-        <TextField source="startTime" label="כניסה ראשונה" defaultValue={1} />
-        <TextField source="endTime" label="כניסה אחרונה" defaultValue={1} />
+        <TextField source="startTime" label="כניסה ראשונה" />
+        <TextField source="endTime" label="כניסה אחרונה" />
+        <NumberField
+          disabled
+          source="mistakes"
+          label="שגיאות"
+          defaultValue={0}
+        />
         <EditButton basepath="/drivers" />
 
         {/* <DeleteButton basepath="/drivers" /> */}

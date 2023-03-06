@@ -60,13 +60,29 @@ function App() {
 
   //company report
   const downloadExcel = (data, companyName, date) => {
+    data.forEach((obj) => (obj["שם החברה"] = companyName));
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
     XLSX.writeFile(workbook, `${companyName}${date}.xlsx`);
   };
+
+  const changeKeysToHebrew = (data) => {
+    const newData = data.map((obj) => {
+      const hebrewKeysData = {};
+      hebrewKeysData["שם הנהג"] = obj.name;
+      hebrewKeysData["מספר זיהוי"] = obj.id;
+      hebrewKeysData["שם החברה"] = obj.companyId;
+      hebrewKeysData["שאלה"] = obj.level;
+      hebrewKeysData["כניסה ראשונה"] = obj.startTime;
+      hebrewKeysData["כניסה אחרונה"] = obj.endTime;
+      hebrewKeysData["שגיאות"] = obj.mistakes;
+
+      return hebrewKeysData;
+    });
+    return newData;
+  };
+
   const downLoadCompanyReport = (companyId, companyName, date) => {
     let fetchUrl = `${rootFetchUrl}/api/drivers?companyId=${companyId}`;
     fetch(fetchUrl, {
@@ -76,10 +92,12 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        downloadExcel(data, companyName, date);
+        const hebrewDataKeys = changeKeysToHebrew(data);
+        downloadExcel(hebrewDataKeys, companyName, date);
       });
   };
 
+  //fire base
   const firebaseConfig = {
     apiKey: "AIzaSyBtWNCGeJPgZGB-XpPjHyzav2_Nj1b4OSA",
     authDomain: "dcschooladminauth.firebaseapp.com",

@@ -20,6 +20,7 @@ import {
   FilterButtonMenuItem,
   ShowButton,
   useRecordContext,
+  NumberField,
 } from "react-admin";
 // import useGetCopmanyId from "./hooks/useGetCopmanyId";
 
@@ -46,10 +47,10 @@ const CompaniesList = (props) => {
   return (
     <List>
       <Datagrid>
-        <TextField source="id" label="מספר זיהוי" />
+        <TextField source="id" label="מספר זיהוי" hidden />
         <TextField source="name" label="שם החברה" />
-        <TextField source="maxDrivers" label="מספר נהגים מקסימלי" />
-        <TextField source="currentDrivers" label="מספר נהגים רשומים" />
+        <NumberField source="maxDrivers" label="מספר נהגים מקסימלי" />
+        <NumberField source="currentDrivers" label="מספר נהגים רשומים" />
         <TextField source="questions" label="שאלות שנבחרו" />
         <UrlField source="link" label="קישור" />
         <EditButton basepath="/companies" label="ערוך" />
