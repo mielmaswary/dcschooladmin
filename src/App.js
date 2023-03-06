@@ -148,7 +148,7 @@ function App() {
       <Resource
         name="companies"
         list={<CompaniesList downLoadCompanyReport={downLoadCompanyReport} />}
-        create={<CompanyCreate questions={questions} />}
+        create={<CompanyCreate questions={questions} dev={dev} />}
         edit={<CompanyEdit questions={questions} />}
       />
       <Resource
