@@ -18,7 +18,7 @@ const CompanyCreate = (props) => {
   const questions = props.questions;
 
   const choices =
-    questions &&
+    questions.length > 0 &&
     questions.map((question) => {
       return { id: question.id, name: question.title };
     });

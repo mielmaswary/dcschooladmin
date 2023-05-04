@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import React from "react";
 import {
   List,
@@ -21,6 +21,11 @@ import {
   ShowButton,
   useRecordContext,
   NumberField,
+  TextInput,
+  FilterForm,
+  FilterButton,
+  CreateButton,
+  SearchInput,
 } from "react-admin";
 // import useGetCopmanyId from "./hooks/useGetCopmanyId";
 
@@ -30,22 +35,35 @@ const CompaniesList = (props) => {
     const handleClick = (e) => {
       const companyId = e.target.value.split(",")[0];
       const companyName = e.target.value.split(",")[1];
+      const companyQuestions = e.target.value.split(",")[2];
       const date = new Date().toJSON().slice(0, 10);
-      props.downLoadCompanyReport(companyId, companyName, date);
+      props.downLoadCompanyReport(
+        companyId,
+        companyName,
+        companyQuestions,
+        date
+      );
     };
     return (
       <Button
         variant="contained"
-        value={`${record && record[source]},${record["name"]}`}
+        value={`${record && record[source]},${record["name"]},${
+          record["questions"].length
+        }`}
         onClick={handleClick}
       >
         דוח
       </Button>
     );
   };
-
+  const companyFilters = [<TextInput label="Search" source="q" alwaysOn />];
+  const filtering = (e) => {
+    
+  };
   return (
     <List>
+      <FilterForm onChange={(e) => filtering(e)} filters={companyFilters} />
+
       <Datagrid>
         <TextField source="id" label="מספר זיהוי" hidden />
         <TextField source="name" label="שם החברה" />

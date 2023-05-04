@@ -35,33 +35,34 @@ function App() {
     let fetchUrl = `${rootFetchUrl}/api/questions`;
     fetch(fetchUrl, {
       headers: {
-        Authorization: "",
+        Authorization: token,
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data);
       });
-  }, []);
+  }, [token]);
 
-  //get company drivers count
-  useEffect(() => {
-    let fetchUrl = `${rootFetchUrl}/api/company/`;
-    fetch(fetchUrl, {
-      headers: {
-        Authorization: "",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setQuestions(data);
-      });
-  }, []);
+  // //get company drivers count
+  // useEffect(() => {
+  //   let fetchUrl = `${rootFetchUrl}/api/company/`;
+  //   fetch(fetchUrl, {
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setQuestions(data);
+  //     });
+  // }, [token]);
 
   //company report
-  const downloadExcel = (data, companyName, date) => {
+  const downloadExcel = (data, companyName, companyQuestions, date) => {
     data.forEach((obj) => (obj["שם החברה"] = companyName));
-    const worksheet = XLSX.utils.json_to_sheet(data);
+    data.forEach((obj) => (obj["סהכ שאלות"] = companyQuestions));
+    const worksheet = XLSX.utils.json_to_sheet(data, { alignment: "center" });
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
     XLSX.writeFile(workbook, `${companyName}${date}.xlsx`);
@@ -74,6 +75,7 @@ function App() {
       hebrewKeysData["מספר זיהוי"] = obj.id;
       hebrewKeysData["שם החברה"] = obj.companyId;
       hebrewKeysData["שאלה"] = obj.level;
+      hebrewKeysData["סהכ שאלות"] = obj.companyQuestions;
       hebrewKeysData["כניסה ראשונה"] = obj.startTime;
       hebrewKeysData["כניסה אחרונה"] = obj.endTime;
       hebrewKeysData["שגיאות"] = obj.mistakes;
@@ -83,17 +85,22 @@ function App() {
     return newData;
   };
 
-  const downLoadCompanyReport = (companyId, companyName, date) => {
+  const downLoadCompanyReport = (
+    companyId,
+    companyName,
+    companyQuestions,
+    date
+  ) => {
     let fetchUrl = `${rootFetchUrl}/api/drivers?companyId=${companyId}`;
     fetch(fetchUrl, {
       headers: {
-        Authorization: "",
+        Authorization: token,
       },
     })
       .then((res) => res.json())
       .then((data) => {
         const hebrewDataKeys = changeKeysToHebrew(data);
-        downloadExcel(hebrewDataKeys, companyName, date);
+        downloadExcel(hebrewDataKeys, companyName, companyQuestions, date);
       });
   };
 
@@ -114,8 +121,8 @@ function App() {
   const authProvider = FirebaseAuthProvider(firebaseConfig, options);
   const getUser = async () =>
     await authProvider.checkAuth().then((user) => {
-      localStorage.setItem("token", token);
       setToken(user._delegate.accessToken);
+      localStorage.setItem("token", user._delegate.accessToken);
     });
   getUser();
 
@@ -154,8 +161,8 @@ function App() {
       <Resource
         name="drivers"
         list={DriversList}
-        create={DriverCreate}
-        edit={DriverEdit}
+        // create={DriverCreate}
+        // edit={DriverEdit}
       />
     </Admin>
   );

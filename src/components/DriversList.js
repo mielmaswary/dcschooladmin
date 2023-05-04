@@ -1,3 +1,4 @@
+import { ClassNames } from "@emotion/react";
 import React from "react";
 import {
   List,
@@ -22,10 +23,24 @@ const DriversList = () => {
           label="שם החברה"
           source="companyId"
           reference="companies"
+          link={false}
         >
           <FunctionField render={(record) => record && `${record.name} `} />
         </ReferenceField>
-        <NumberField source="level" label="שלב" />
+        <NumberField
+          source="level"
+          label="שאלה"
+        />
+        <ReferenceField
+          label="סהכ שאלות"
+          source="companyId"
+          reference="companies"
+          link={false}
+        >
+          <FunctionField
+            render={(record) => record && `${record.questions.length} `}
+          />
+        </ReferenceField>
         <TextField source="startTime" label="כניסה ראשונה" />
         <TextField source="endTime" label="כניסה אחרונה" />
         <NumberField
@@ -34,7 +49,7 @@ const DriversList = () => {
           label="שגיאות"
           defaultValue={0}
         />
-        <EditButton basepath="/drivers" />
+        {/* <EditButton basepath="/drivers" /> */}
 
         {/* <DeleteButton basepath="/drivers" /> */}
       </Datagrid>
